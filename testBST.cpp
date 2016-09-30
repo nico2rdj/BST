@@ -50,8 +50,20 @@ int main() {
     }
 
     /*Test empty. */
-    if( b.empty())
+    BSTInt d;
+    if( !d.empty()){
+	cout << " empty issue" << endl;
 	return -1;
+    }
+
+    d.insert(0);
+
+    if( d.empty()){
+	cout << " empty issue" << endl;
+	return -1;
+    }
+	
+
 
 
     /* Test Height */
