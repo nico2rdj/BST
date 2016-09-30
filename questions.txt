@@ -1,0 +1,32 @@
+Sorry for my english I am an exchange student from France and I am still learning English.
+
+
+
+Q1. There is the executable file " bst ", the objects files : " BSTInt.o, BSTNodeInt.o, testBST.o "
+
+Q2.
+
+BSTInt.cpp: In function 'bool insert(int)':
+BSTInt.cpp:25:8: error: 'root' was not declared in this scope
+   if (!root) {
+        ^
+BSTInt.cpp:27:7: error: 'isize' was not declared in this scope
+     ++isize;
+       ^
+BSTInt.cpp:31:22: error: 'root' was not declared in this scope
+   BSTNodeInt* curr = root;
+                      ^
+BSTInt.cpp:56:5: error: 'isize' was not declared in this scope
+   ++isize;
+     ^
+make: *** [BSTInt.o] Error 1
+
+The error means that the program do not know what is 'root' and what is 'isize'
+they were not initialized. They were initialized in BSTInt.h.
+
+Q3.There is a bug in the function insert() if there is only a curr left or a curr right it would not enter into the while and directly replace left or right value. And if it is the same number in this case it would not
+return false.
+
+Q4. I proceed using gdb, start with b main, run, step and display the value and it did not go into the while so I did a sketch in a paper and find a solution to fix the bug. While there is a 'cell' we need to find the 
+right place to the new cell going to righ or left or if it already exists return false. In order to place it we need to save the parent cell in a variable because the cell will finish to have the value NULL, once it is NULL
+we take the parent cell and it become its left or right son depending on its value.

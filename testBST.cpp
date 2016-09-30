@@ -25,6 +25,7 @@ int main() {
     v.push_back(4);
     v.push_back(1);
     v.push_back(100);
+    v.push_back(102);
     v.push_back(-33);
 
     /* Create an instance of BST holding int */
@@ -39,17 +40,26 @@ int main() {
             return -1;
         }
     }
-
-
+	
+    
     /* Test size. */
     cout << "Size is: " << b.size() << endl;
     if(b.size() != v.size()) {
-        cout << "... which is incorrect." << endl;
+        cout << "... which  is incorrect." << endl;
         return -1;
     }
 
+    /*Test empty. */
+    if( b.empty())
+	return -1;
+
+
+    /* Test Height */
+    cout << "Height is : " << b.height() << endl;	
+
+
     /* Test find return value. */
-    // Test the items that are already in the tree
+   
     for(int item : v) {
         if(!b.find(item)) {
             cout << "Incorrect return value when finding " << item << endl;
@@ -57,6 +67,45 @@ int main() {
         }
     }
 
+    vector<int> v1;
+    v1.push_back(3);
+    v1.push_back(2);
+    v1.push_back(1);
+    v1.push_back(0);
+    
+    
+
+    BSTInt c;
+
+//Check if we can insert all our values
+    for(int item : v1) {
+        bool pr = c.insert(item);
+        if(! pr ) {
+            cout << "Incorrect bool return value when inserting " << item 
+                 << endl;
+            return -1;
+        }
+    }
+            
+ 
+//Check if we can insert the same value
+    for(int item : v1){ 
+        if( c.insert(item) != false){
+	    cout << " Failed when inserting the same value" << item << endl;
+	return -1;
+    }
+
+//Check that all items are in the tree
+    for(int item : v1){
+	if( c.find(item) == false){
+		cout << " did not find item " << item << endl;
+		return -1;
+	}
+    }
+
+
+
+	
 
     /* UNCOMMENT THE LINES BELOW TO TEST THE TEMPLATE-BASED ITERATOR */
 
@@ -128,11 +177,13 @@ int main() {
 
     cout << "success!" << endl;
 
-    */
-
+    
+*/
     // ADD MORE TESTS HERE.  You might also want to change what is input
     // into the vector v.
+    
 
     cout << "All tests passed!" << endl;
     return 0;
+}
 }
