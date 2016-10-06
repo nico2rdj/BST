@@ -83,14 +83,20 @@ int main() {
     v1.push_back(3);
     v1.push_back(2);
     v1.push_back(1);
-    v1.push_back(0);
+    v1.push_back(10);
+    v1.push_back(14);
+    v1.push_back(13);
+    v1.push_back(-12);
+
+
     
     
 
     BSTInt c;
 
+
 //Check if we can insert all our values
-    for(int item : v1) {
+    for(int item : v) {
         bool pr = c.insert(item);
         if(! pr ) {
             cout << "Incorrect bool return value when inserting " << item 
@@ -98,17 +104,68 @@ int main() {
             return -1;
         }
     }
+    
+   
+    
+    BST<int> btemp;
+    for (int item : v) {
+        // The auto type here is the pair of BSTIterator<int>, bool
+        cout << "Inserting " << item << " into the int template-based BST...";
+        auto p = btemp.insert(item);
+        if (*(p.first) != item) {
+            cout << "Wrong iterator returned.  "
+                 << "Expected " << item << " but got " << *(p.first) << endl;
+            return -1;
+        }
+        if (!p.second) {
+            cout << "Wrong boolean returned.  Expected true but got " 
+                 << p.second << endl;
+            return -1;
+        }
+        cout << "success!" << endl;
+              
+    }
+
+// test successor()
+    BSTIterator<int> foundIt = btemp.begin();
+
+    cout << "iterator : " << *(foundIt) << endl;
+
+    int mini = *foundIt;
+    for( int item : v){
+	cout << "iterator : " << *foundIt << endl;
+        if(foundIt != btemp.end()){
+	                if( *foundIt < mini){
+	        cout << " iterator ++ does not work" << endl;
+	        return -1;   
+            }
+        ++foundIt;
+	mini = *foundIt;
+	}
+}
+// test empty()
+    BST<int> bemp;
+    if( !(bemp.empty())){
+	cout << " problem with the empty() " << endl;
+	return -1;
+    }
+    bemp.insert(1);
+    if( b.empty()){
+	cout << " problem with empty() " << endl;
+	return -1;
+    }
+    
             
  
 //Check if we can insert the same value
-    for(int item : v1){ 
+    for(int item : v){ 
         if( c.insert(item) != false){
 	    cout << " Failed when inserting the same value" << item << endl;
 	return -1;
     }
 
 //Check that all items are in the tree
-    for(int item : v1){
+    for(int item : v){
 	if( c.find(item) == false){
 		cout << " did not find item " << item << endl;
 		return -1;
@@ -121,7 +178,7 @@ int main() {
 
     /* UNCOMMENT THE LINES BELOW TO TEST THE TEMPLATE-BASED ITERATOR */
 
-    /*
+    
     // Test the template version of the BST  with ints 
     BST<int> btemp;
     for (int item : v) {
@@ -190,10 +247,9 @@ int main() {
     cout << "success!" << endl;
 
     
-*/
+
     // ADD MORE TESTS HERE.  You might also want to change what is input
     // into the vector v.
-    
 
     cout << "All tests passed!" << endl;
     return 0;

@@ -50,15 +50,18 @@ int main(int argc, char* argv[])
         
         // TODO: Create a new BST here
 
+        BST<std::string> btemp;
         
+    
         while (getline(in, name)) {
             // TODO: add the name string to the BST
+            btemp.insert(name);
 
             
         }
 
-        // TODO: Get the height of the BST and store it in height
-
+        height = btemp.height(); // TODO: Get the height of the BST and store it in height
+	size = btemp.size();
         // TODO: Get the size of the BST and store it in size
 
         // DO NOT CHANGE THE LINES BELOW
@@ -71,7 +74,7 @@ int main(int argc, char* argv[])
             getline(cin, name);
             
             // TODO: Chainge the if statment to check is name is in the BST
-            if (true) {
+            if (btemp.find(name) != btemp.end()) {
                 cout << name << " found!" << endl;
             }
             else {

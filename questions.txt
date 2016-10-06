@@ -30,3 +30,10 @@ return false.
 Q4. I proceed using gdb, start with b main, run, step and display the value and it did not go into the while so I did a sketch in a paper and find a solution to fix the bug. While there is a 'cell' we need to find the 
 right place to the new cell going to righ or left or if it already exists return false. In order to place it we need to save the parent cell in a variable because the cell will finish to have the value NULL, once it is NULL
 we take the parent cell and it become its left or right son depending on its value.
+
+Q5. In BST.hpp the function insert() passes its arguments by reference while the one from BSTInt.h passes its arguments by values. In BST.hpp, we use reference because we do not know the data type and also we don't have to make a copy so we save time, we don't want to pass by value because we want to be able to modify the contents of the node. In BSTInt.cpp we use the value because we don't want to modify the original one. 
+
+Q6. The input file that produces taller trees is the sorted one because it produces one linked list therefore the height will be larger because each node will increase the height by one.
+In the case of random, the tree will be lower or equal to the sorted one.
+
+Q7. For the sorted tree I would expect a height of n while for the random tree in the best case the tree is perfectly balanced so a height of log(n) or more. For the actors_sorted.txt the size is 11794 and the height 11793 while for actors.txt the size is the same bit the height is 32 and for the actors100.txt the size is 100 and the height is 14. Si it follows this fact.

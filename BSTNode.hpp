@@ -43,11 +43,35 @@ BSTNode<Data>::BSTNode(const Data & d) : data(d), left(0), right(0), parent(0) {
 
 /* Return a pointer to the BSTNode that contains the item that is sequentially next 
  * in the tree */
+
 template <typename Data>
 BSTNode<Data>* BSTNode<Data>::successor()
 {
-  //TODO 
-  return NULL;
+  BSTNode<Data>* n = NULL;
+  if( this->right != NULL){
+	n = this->right;
+	while(n->left != NULL){
+		n = n->left;
+        }
+	return n;
+  }
+
+  if( this->parent != NULL || this->parent->data > this->data)
+	return this->parent;
+  
+  while( this->parent != NULL || this->parent->data < this->data){
+	n = this->parent;
+  }
+  if( n->parent->data > n->data)
+	return n->parent;
+	
+
+
+
+	
+
+  
+  return n;
 }
 
 /** Overload operator<< to print a BSTNode's fields to an ostream. */
